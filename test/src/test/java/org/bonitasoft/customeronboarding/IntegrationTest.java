@@ -36,21 +36,20 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
 public class IntegrationTest {
 
     public static final double TEST_LOAN_REQUEST_AMOUNT = 300000.0d;
     public static final int TEST_LOAN_REQUEST_DURATION_IN_YEARS = 15;
     public static final String TEST_FILE_NAME = "test.txt";
-    private static final String REJECT_COMMENTS = "Credit limit exceeded";
-    private static final String CUSTOMER_ON_BOARDING = "CustomerOnboarding";
-    private static final String COMMERCIAL_OFFER_APPROVAL = "CommercialOfferApproval";
-    private static final String PROCESSES_VERSION = "1.0.0";
     public static final String LOGIN_SERVICE_URL = "/loginservice";
     public static final String USERNAME_WALTER_BATES = "walter.bates";
     public static final String PASSWORD_WALTER_BATES = "bpm";
@@ -59,6 +58,10 @@ public class IntegrationTest {
     public static final String X_BONITA_API_TOKEN_COOKIE = "X-Bonita-API-Token";
     public static final String JSESSIONID_COOKIE = "JSESSIONID";
     public static final String URL_SERVLET_FILE_UPLOAD = "/API/formFileUpload";
+    private static final String REJECT_COMMENTS = "Credit limit exceeded";
+    private static final String CUSTOMER_ON_BOARDING = "CustomerOnboarding";
+    private static final String COMMERCIAL_OFFER_APPROVAL = "CommercialOfferApproval";
+    private static final String PROCESSES_VERSION = "1.0.0";
     private static APISession session;
 
     private String bonitaToken;
@@ -68,7 +71,6 @@ public class IntegrationTest {
     public static void setUpClass() throws Exception {
         session = Server.httpConnect();
         ProcessAPI processAPI = TenantAPIAccessor.getProcessAPI(session);
-
 
 
         BonitaBPMAssert.setUp(session, processAPI);
@@ -96,8 +98,27 @@ public class IntegrationTest {
         BonitaBPMAssert.assertHumanTaskIsPendingAndExecute(newCustomerOnBoardingProcessInstanceId, "Validate provided information",
                 reviewRequestApprovedInputs(), session.getUserId());
 
+
+        // Step "Create commercial offer"
+        BonitaBPMAssert.assertHumanTaskIsPendingAndExecute(newCustomerOnBoardingProcessInstanceId, "Create commercial offer",
+                createCommercialOfferInputs(), session.getUserId());
+
         // Check process is finished
         BonitaBPMAssert.assertProcessInstanceIsFinished(newCustomerOnBoardingProcessInstanceId);
+
+        Path tempDirWithPrefix = Files.createTempDirectory("test-temp-folder");
+        Path clientBDMZip = Paths.get(tempDirWithPrefix.toString(), "clientBDM.txt");
+
+        File clientBDMZipFile = clientBDMZip.toFile();
+        try (FileOutputStream stream = new FileOutputStream(clientBDMZipFile)) {
+            stream.write(TenantAPIAccessor.getTenantAdministrationAPI(session).getClientBDMZip());
+        }
+
+        ZipInputStream zipIn = new ZipInputStream(new FileInputStream(clientBDMZipFile));
+        ZipEntry entry;
+        do {
+            entry.getName() == ""
+        }
 
         // Check the amount of the loan request as correctly been saved and that request document has been approved
         LoanRequest loanRequest = BonitaBPMAssert.assertBusinessDataNotNull(LoanRequest.class,
@@ -176,7 +197,7 @@ public class IntegrationTest {
                     for (Map.Entry<String, String> entry : uploadedFileInformation.entrySet()) {
                         String key = entry.getKey();
                         Serializable value = entry.getValue();
-                        System.out.println("key: "+key+" value: "+value);
+                        System.out.println("key: " + key + " value: " + value);
                     }
                 }
             }
@@ -187,6 +208,7 @@ public class IntegrationTest {
 
     /**
      * Authentication on Bonita server to get X-Bonita-API-Token and JSESSIONID in order to be able to upload file using formFileUpload servlet
+     *
      * @throws IOException error when reading answer
      */
     private void authenticate() throws IOException {
@@ -246,6 +268,20 @@ public class IntegrationTest {
         reviewLoanRequestInputs.put("loanRequestInput", loanRequestInput);
 
         return reviewLoanRequestInputs;
+    }
+
+    private Map<String, Serializable> createCommercialOfferInputs() {
+        Map<String, Serializable> commercialOfferInputs = new HashMap<>();
+
+        HashMap<String, Serializable> commercialOfferInput = new HashMap<>();
+        commercialOfferInput.put("amount", TEST_LOAN_REQUEST_AMOUNT);
+        commercialOfferInput.put("durationInYears", TEST_LOAN_REQUEST_DURATION_IN_YEARS + 5);
+        commercialOfferInput.put("description", "Test");
+
+        commercialOfferInputs.put("commercialOfferInput", commercialOfferInput);
+
+        return commercialOfferInputs;
+
     }
 /*
  @Test public void testRejectPath() throws Exception {

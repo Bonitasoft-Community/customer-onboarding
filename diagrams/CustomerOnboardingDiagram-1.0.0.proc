@@ -54,9 +54,54 @@
       </elements>
       <elements xmi:type="process:Lane" xmi:id="_N7QUwGqZEemflMB3hHGJUw" name="Bank level 2 lane" actor="_txvlMGqZEemflMB3hHGJUw">
         <elements xmi:type="process:Task" xmi:id="_SY92MGqZEemflMB3hHGJUw" name="Create commercial offer" outgoing="_UjS_wGqZEemflMB3hHGJUw" incoming="_QNCKIGqZEemflMB3hHGJUw" overrideActorsOfTheLane="false">
+          <textAnnotationAttachment xmi:type="process:TextAnnotationAttachment" xmi:id="_Nhg78HjQEeqISLIj3M6jhg" source="_NhUusHjQEeqISLIj3M6jhg"/>
           <dynamicLabel xmi:type="expression:Expression" xmi:id="_QMwdUWqZEemflMB3hHGJUw" name="" content="" returnTypeFixed="true"/>
           <dynamicDescription xmi:type="expression:Expression" xmi:id="_QMwdUGqZEemflMB3hHGJUw" name="" content="" returnTypeFixed="true"/>
           <stepSummary xmi:type="expression:Expression" xmi:id="_QMwdUmqZEemflMB3hHGJUw" name="" content="" returnTypeFixed="true"/>
+          <operations xmi:type="expression:Operation" xmi:id="_Iv7cQHjQEeqISLIj3M6jhg">
+            <leftOperand xmi:type="expression:Expression" xmi:id="_Iv7cQXjQEeqISLIj3M6jhg" name="commercialOffer" content="commercialOffer" type="TYPE_VARIABLE" returnType="com.company.model.CommercialOffer">
+              <referencedElements xmi:type="process:BusinessObjectData" xmi:id="_Iv7cQnjQEeqISLIj3M6jhg" name="commercialOffer" dataType="_AgPzPGqXEemflMB3hHGJUw" className="com.company.model.CommercialOffer"/>
+            </leftOperand>
+            <rightOperand xmi:type="expression:Expression" xmi:id="_Iv7cQ3jQEeqISLIj3M6jhg" name="commercialOfferInput.amount" content="commercialOfferInput?.amount" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="java.lang.Double">
+              <referencedElements xmi:type="process:ContractInput" xmi:id="_Iv7cRHjQEeqISLIj3M6jhg" name="commercialOfferInput" type="COMPLEX"/>
+            </rightOperand>
+            <operator xmi:type="expression:Operator" xmi:id="_Iv7cRXjQEeqISLIj3M6jhg" type="JAVA_METHOD" expression="setAmount">
+              <inputTypes>java.lang.Double</inputTypes>
+            </operator>
+          </operations>
+          <operations xmi:type="expression:Operation" xmi:id="_Iv7cRnjQEeqISLIj3M6jhg">
+            <leftOperand xmi:type="expression:Expression" xmi:id="_Iv7cR3jQEeqISLIj3M6jhg" name="commercialOffer" content="commercialOffer" type="TYPE_VARIABLE" returnType="com.company.model.CommercialOffer">
+              <referencedElements xmi:type="process:BusinessObjectData" xmi:id="_Iv7cSHjQEeqISLIj3M6jhg" name="commercialOffer" dataType="_AgPzPGqXEemflMB3hHGJUw" className="com.company.model.CommercialOffer"/>
+            </leftOperand>
+            <rightOperand xmi:type="expression:Expression" xmi:id="_Iv7cSXjQEeqISLIj3M6jhg" name="commercialOfferInput.duration" content="commercialOfferInput?.duration" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="java.lang.Integer">
+              <referencedElements xmi:type="process:ContractInput" xmi:id="_Iv7cSnjQEeqISLIj3M6jhg" name="commercialOfferInput" type="COMPLEX"/>
+            </rightOperand>
+            <operator xmi:type="expression:Operator" xmi:id="_Iv7cS3jQEeqISLIj3M6jhg" type="JAVA_METHOD" expression="setDuration">
+              <inputTypes>java.lang.Integer</inputTypes>
+            </operator>
+          </operations>
+          <operations xmi:type="expression:Operation" xmi:id="_Iv7cTHjQEeqISLIj3M6jhg">
+            <leftOperand xmi:type="expression:Expression" xmi:id="_Iv7cTXjQEeqISLIj3M6jhg" name="commercialOffer" content="commercialOffer" type="TYPE_VARIABLE" returnType="com.company.model.CommercialOffer">
+              <referencedElements xmi:type="process:BusinessObjectData" xmi:id="_Iv7cTnjQEeqISLIj3M6jhg" name="commercialOffer" dataType="_AgPzPGqXEemflMB3hHGJUw" className="com.company.model.CommercialOffer"/>
+            </leftOperand>
+            <rightOperand xmi:type="expression:Expression" xmi:id="_Iv7cT3jQEeqISLIj3M6jhg" name="commercialOfferInput.description" content="commercialOfferInput?.description" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT">
+              <referencedElements xmi:type="process:ContractInput" xmi:id="_Iv7cUHjQEeqISLIj3M6jhg" name="commercialOfferInput" type="COMPLEX"/>
+            </rightOperand>
+            <operator xmi:type="expression:Operator" xmi:id="_Iv7cUXjQEeqISLIj3M6jhg" type="JAVA_METHOD" expression="setDescription">
+              <inputTypes>java.lang.String</inputTypes>
+            </operator>
+          </operations>
+          <operations xmi:type="expression:Operation" xmi:id="_KJ-YYHjQEeqISLIj3M6jhg">
+            <leftOperand xmi:type="expression:Expression" xmi:id="_KJ-YYXjQEeqISLIj3M6jhg" name="commercialOffer" content="commercialOffer" type="TYPE_VARIABLE" returnType="com.company.model.CommercialOffer">
+              <referencedElements xmi:type="process:BusinessObjectData" xmi:id="_KvMlUHjQEeqISLIj3M6jhg" name="commercialOffer" dataType="_AgPzPGqXEemflMB3hHGJUw" className="com.company.model.CommercialOffer"/>
+            </leftOperand>
+            <rightOperand xmi:type="expression:Expression" xmi:id="_KJ-YYnjQEeqISLIj3M6jhg" name="loanRequest" content="loanRequest" type="TYPE_VARIABLE" returnType="com.company.model.LoanRequest">
+              <referencedElements xmi:type="process:BusinessObjectData" xmi:id="_MAzXIHjQEeqISLIj3M6jhg" name="loanRequest" dataType="_AgPzPGqXEemflMB3hHGJUw" className="com.company.model.LoanRequest"/>
+            </rightOperand>
+            <operator xmi:type="expression:Operator" xmi:id="_KJ-YY3jQEeqISLIj3M6jhg" type="JAVA_METHOD" expression="setRequest">
+              <inputTypes>com.company.model.LoanRequest</inputTypes>
+            </operator>
+          </operations>
           <loopCondition xmi:type="expression:Expression" xmi:id="_QMwdU2qZEemflMB3hHGJUw" name="" content="" returnType="java.lang.Boolean" returnTypeFixed="true"/>
           <loopMaximum xmi:type="expression:Expression" xmi:id="_QMwdVGqZEemflMB3hHGJUw" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
           <cardinalityExpression xmi:type="expression:Expression" xmi:id="_QMwdVWqZEemflMB3hHGJUw" name="" content="" returnType="java.lang.Integer" returnTypeFixed="true"/>
@@ -65,7 +110,19 @@
           <formMapping xmi:type="process:FormMapping" xmi:id="_SY-dSWqZEemflMB3hHGJUw" type="NONE">
             <targetForm xmi:type="expression:Expression" xmi:id="_SY-dSmqZEemflMB3hHGJUw" name="" content="" type="FORM_REFERENCE_TYPE" returnTypeFixed="true"/>
           </formMapping>
-          <contract xmi:type="process:Contract" xmi:id="_SY-dSGqZEemflMB3hHGJUw"/>
+          <contract xmi:type="process:Contract" xmi:id="_SY-dSGqZEemflMB3hHGJUw">
+            <inputs xmi:type="process:ContractInput" xmi:id="_Iv61MHjQEeqISLIj3M6jhg" name="commercialOfferInput" type="COMPLEX" dataReference="commercialOffer">
+              <inputs xmi:type="process:ContractInput" xmi:id="_Iv61MXjQEeqISLIj3M6jhg" name="amount" type="DECIMAL"/>
+              <inputs xmi:type="process:ContractInput" xmi:id="_Iv61MnjQEeqISLIj3M6jhg" name="duration" type="INTEGER"/>
+              <inputs xmi:type="process:ContractInput" xmi:id="_Iv61M3jQEeqISLIj3M6jhg" name="description"/>
+            </inputs>
+            <constraints xmi:type="process:ContractConstraint" xmi:id="_Iv61NHjQEeqISLIj3M6jhg" expression="commercialOfferInput?.amount != null" errorMessage="amount is mandatory for CommercialOffer" name="mandatory_commercialOfferInput_amount">
+              <inputNames>commercialOfferInput</inputNames>
+            </constraints>
+            <constraints xmi:type="process:ContractConstraint" xmi:id="_Iv61NXjQEeqISLIj3M6jhg" expression="commercialOfferInput?.duration != null" errorMessage="duration is mandatory for CommercialOffer" name="mandatory_commercialOfferInput_duration">
+              <inputNames>commercialOfferInput</inputNames>
+            </constraints>
+          </contract>
           <expectedDuration xmi:type="expression:Expression" xmi:id="_SY_EUGqZEemflMB3hHGJUw" name="" content="" returnType="java.lang.Long" returnTypeFixed="true"/>
         </elements>
         <elements xmi:type="process:ServiceTask" xmi:id="_UjJOwGqZEemflMB3hHGJUw" name="Send offer to client by email" outgoing="_ZBkh4GqZEemflMB3hHGJUw" incoming="_UjS_wGqZEemflMB3hHGJUw">
@@ -83,6 +140,7 @@
           <dynamicDescription xmi:type="expression:Expression" xmi:id="_ZBd0MGqZEemflMB3hHGJUw" name="" content="" returnTypeFixed="true"/>
           <stepSummary xmi:type="expression:Expression" xmi:id="_ZBd0MmqZEemflMB3hHGJUw" name="" content="" returnTypeFixed="true"/>
         </elements>
+        <elements xmi:type="process:TextAnnotation" xmi:id="_NhUusHjQEeqISLIj3M6jhg" text="Commercial offer is created using information provided by the user in the form.&#xA;Data are sent to the step contract, then used by task operations to create and set attribute of business variable.&#xA;An operation is also added to set the reference from the loadRequest to the commercialOffer business variables."/>
       </elements>
       <data xmi:type="process:BusinessObjectData" xmi:id="_7x66MGOFEeqsXOWFSGRGEQ" name="loanRequest" dataType="_AgPzPGqXEemflMB3hHGJUw" className="com.company.model.LoanRequest">
         <defaultValue xmi:type="expression:Expression" xmi:id="_STQZImOGEeqsXOWFSGRGEQ" name="initLoanRequest()" content="def loanRequestVar = new com.company.model.LoanRequest()&#xA;loanRequestVar.amount = loanRequestInput?.amount&#xA;loanRequestVar.durationInYears = loanRequestInput?.durationInYears&#xA;loanRequestVar.customerId = BonitaUsers.getProcessInstanceInitiator(apiAccessor,processInstanceId).id&#xA;return loanRequestVar" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="com.company.model.LoanRequest">
@@ -90,6 +148,9 @@
           <referencedElements xmi:type="expression:Expression" xmi:id="_aUxYgWOGEeqsXOWFSGRGEQ" name="apiAccessor" content="apiAccessor" type="TYPE_ENGINE_CONSTANT" returnType="org.bonitasoft.engine.api.APIAccessor"/>
           <referencedElements xmi:type="process:ContractInput" xmi:id="_STQZI2OGEeqsXOWFSGRGEQ" name="loanRequestInput" type="COMPLEX"/>
         </defaultValue>
+      </data>
+      <data xmi:type="process:BusinessObjectData" xmi:id="_AOp-wHjQEeqISLIj3M6jhg" name="commercialOffer" dataType="_AgPzPGqXEemflMB3hHGJUw" className="com.company.model.CommercialOffer">
+        <defaultValue xmi:type="expression:Expression" xmi:id="_AOp-wXjQEeqISLIj3M6jhg" name="" content="" interpreter="GROOVY" type="TYPE_READ_ONLY_SCRIPT" returnType="java.lang.Object"/>
       </data>
       <formMapping xmi:type="process:FormMapping" xmi:id="_AgPzHGqXEemflMB3hHGJUw">
         <targetForm xmi:type="expression:Expression" xmi:id="_LisO0GOHEeqsXOWFSGRGEQ" name="customerOnboardingInstantiationForm" content="0b752c31-b8e0-4d85-879a-e7df2adafd04" type="FORM_REFERENCE_TYPE" returnTypeFixed="true"/>
@@ -245,12 +306,19 @@
               </children>
               <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ZBebQWqZEemflMB3hHGJUw" x="918" y="56"/>
             </children>
+            <children xmi:type="notation:Node" xmi:id="_NhaOQHjQEeqISLIj3M6jhg" type="3015" element="_NhUusHjQEeqISLIj3M6jhg">
+              <children xmi:type="notation:DecorationNode" xmi:id="_NhaORXjQEeqISLIj3M6jhg" type="5010"/>
+              <styles xmi:type="notation:DescriptionStyle" xmi:id="_NhaOQXjQEeqISLIj3M6jhg"/>
+              <styles xmi:type="notation:FontStyle" xmi:id="_NhaOQnjQEeqISLIj3M6jhg" fontName="Sans"/>
+              <styles xmi:type="notation:LineStyle" xmi:id="_NhaOQ3jQEeqISLIj3M6jhg"/>
+              <layoutConstraint xmi:type="notation:Bounds" xmi:id="_NhaORHjQEeqISLIj3M6jhg" x="42" y="50" width="340" height="134"/>
+            </children>
           </children>
           <styles xmi:type="notation:DescriptionStyle" xmi:id="_N7Q70WqZEemflMB3hHGJUw"/>
           <styles xmi:type="notation:FontStyle" xmi:id="_N7Q70mqZEemflMB3hHGJUw" fontName="DejaVu Sans"/>
           <styles xmi:type="notation:LineStyle" xmi:id="_N7Q702qZEemflMB3hHGJUw"/>
           <styles xmi:type="notation:FillStyle" xmi:id="_N7Ri4mqZEemflMB3hHGJUw"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_N7Q71GqZEemflMB3hHGJUw" x="44" y="338" width="1052" height="146"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_N7Q71GqZEemflMB3hHGJUw" x="48" y="414" width="1058" height="244"/>
         </children>
       </children>
       <styles xmi:type="notation:DescriptionStyle" xmi:id="_AgPzUGqXEemflMB3hHGJUw"/>
@@ -301,6 +369,10 @@
       </children>
       <styles xmi:type="notation:FontStyle" xmi:id="_ZBlwAWqZEemflMB3hHGJUw" fontName="DejaVu Sans"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ZBlwAmqZEemflMB3hHGJUw" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+    </edges>
+    <edges xmi:type="notation:Connector" xmi:id="_NhixIHjQEeqISLIj3M6jhg" type="4003" element="_Nhg78HjQEeqISLIj3M6jhg" source="_NhaOQHjQEeqISLIj3M6jhg" target="_SY_EUWqZEemflMB3hHGJUw">
+      <styles xmi:type="notation:FontStyle" xmi:id="_NhixIXjQEeqISLIj3M6jhg" fontName="Sans"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_NhixInjQEeqISLIj3M6jhg" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
     </edges>
   </notation:Diagram>
 </xmi:XMI>

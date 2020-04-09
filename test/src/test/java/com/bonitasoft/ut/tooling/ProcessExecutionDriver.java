@@ -78,7 +78,7 @@ public class ProcessExecutionDriver {
                                                Map<String, Serializable> taskInputs) throws Exception {
         long humanTaskInstanceId = activityInstance.getId();
 
-        processAPI.executeUserTask(userId, humanTaskInstanceId, taskInputs);
+        processAPI.assignAndExecuteUserTask(userId, humanTaskInstanceId, taskInputs);
     }
 
 }
